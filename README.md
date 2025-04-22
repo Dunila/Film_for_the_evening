@@ -1,5 +1,6 @@
 ## Film for the evning
 Pet-project.
+data files saved localy
 
 Build recomendation system
 1) Parse information about users, their votes, and films - IN PROGRESS(Code has written)
@@ -10,5 +11,4 @@ Build recomendation system
 6) Model on film simularity
 
  TODO: parsing by each year on sorting by votes
- TODO: Proxi
- TODO: Remove any mentioning of the web in he code
+ TODO: Change pathes of data
