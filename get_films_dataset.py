@@ -20,7 +20,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from parse_lb_films import *
 
-with open("Movie-for-the-evening/lb_films_url.txt", "r") as f:
+with open("lb_films_url.txt", "r") as f:
     films_url = list(map(str.strip, f.readlines()))
 
 options = webdriver.ChromeOptions()

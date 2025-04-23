@@ -66,22 +66,22 @@ def insert_user(user, cursor):
 RATINGS_SAVE_TYPE_JSON = False #True => JSON, False => SQLITE
 USERS_SAVE_TYPE_JSON = True #True => JSON, False => SQLITE
 
-USERS_LISTED_PATH = "Movie-for-the-evening/data/users_listed.txt"
-USERS_SCHEDULE_PATH = "Movie-for-the-evening/data/users_schedule.txt"
-USERS_PARSED_PATH = "Movie-for-the-evening/data/users_parsed.txt"
-RATINGS_JSON_PATH = "Movie-for-the-evening/data/data_ratings.json"
-USERS_JSON_PATH = "Movie-for-the-evening/data/data_users.json"
-DB_PATH = "Movie-for-the-evening/data/parsed_data.db"
+USERS_LISTED_PATH = "data/users_listed.txt"
+USERS_SCHEDULE_PATH = "data/users_schedule.txt"
+USERS_PARSED_PATH = "data/users_parsed.txt"
+RATINGS_JSON_PATH = "data/data_ratings.json"
+USERS_JSON_PATH = "data/data_users.json"
+DB_PATH = "data/parsed_data.db"
 
 MAX_ITERS = 10_000
 
-with open("Movie-for-the-evening/data/users_listed.txt", "r") as f:
+with open(USERS_LISTED_PATH, "r") as f:
     users_listed = set(map(lambda x: x.strip(), f.readlines()))
 
-with open("Movie-for-the-evening/data/users_schedule.txt", "r") as f:
+with open(USERS_SCHEDULE_PATH, "r") as f:
     users_listed.update(set(map(lambda x: x.strip(), f.readlines())))
 
-with open("Movie-for-the-evening/data/users_parsed.txt", "r") as f:
+with open(USERS_PARSED_PATH, "r") as f:
     users_parsed = set(map(lambda x: x.strip(), f.readlines()))
 
 users_listed = users_listed.difference(users_parsed)
@@ -122,7 +122,7 @@ data_ratings = []
 data_users = []
 
 if RATINGS_SAVE_TYPE_JSON:
-    with open("Movie-for-the-evening/data/data_ratings.json", "r") as f:
+    with open(RATINGS_JSON_PATH, "r") as f:
         file_content = f.read()
         if file_content:
             data_ratings = json.loads(file_content)
@@ -131,7 +131,7 @@ if RATINGS_SAVE_TYPE_JSON:
 
 
 if USERS_SAVE_TYPE_JSON:
-    with open("Movie-for-the-evening/data/data_users.json", "r") as f:
+    with open(USERS_JSON_PATH, "r") as f:
         file_content = f.read()
         if file_content:
             data_users = json.loads(file_content)
@@ -186,15 +186,15 @@ try:
         print(parsed_ratings_cnt,  parsed_users_cnt)
 
         if i % 10 == 0:
-            with open("Movie-for-the-evening/data/users_parsed.txt", "w") as f:
+            with open(USERS_PARSED_PATH, "w") as f:
                 f.write("\n".join(str(item) for item in users_parsed))
             
             if RATINGS_SAVE_TYPE_JSON:
-                with open("Movie-for-the-evening/data/data_ratings.json", "w") as f:
+                with open(RATINGS_JSON_PATH, "w") as f:
                     f.write(json.dumps(data_ratings, indent=4))
             
             if USERS_SAVE_TYPE_JSON:
-                with open("Movie-for-the-evening/data/data_users.json", "w") as f:
+                with open(USERS_JSON_PATH, "w") as f:
                     f.write(json.dumps(data_users, indent=4))
                 
             if not RATINGS_SAVE_TYPE_JSON or not USERS_SAVE_TYPE_JSON:

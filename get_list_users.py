@@ -19,6 +19,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from parse_lb_users import *
 
+
+SCHEDULE_PATH = "data/users_schedule.txt"
+LISTED_PATH = "data/users_listed.txt"
+
 options = webdriver.ChromeOptions()
 #options.add_argument("--headless")
 options.add_argument("--disable-blink-features=AutomationControlled")
@@ -26,10 +30,10 @@ options.add_argument("--disable-blink-features=AutomationControlled")
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
 
-with open("Movie-for-the-evening/data/users_schedule.txt", "r") as f:
+with open(SCHEDULE_PATH, "r") as f:
     users_schedule = set(map(lambda x: x.strip(), f.readlines()))
 
-with open("Movie-for-the-evening/data/users_listed.txt", "r") as f:
+with open(LISTED_PATH, "r") as f:
     users_listed = set(map(lambda x: x.strip(), f.readlines()))
 
 #print(users_schedule, users_parsed)
@@ -48,9 +52,9 @@ while i <= 1000:
     print(len(users_schedule), len(users_listed))
 
     if i % 10 == 0:
-        with open("Movie-for-the-evening/data/users_schedule.txt", "w") as f:
+        with open(SCHEDULE_PATH, "w") as f:
             f.write("\n".join(str(item) for item in users_schedule))
 
-        with open("Movie-for-the-evening/data/users_listed.txt", "w") as f:
+        with open(LISTED_PATH, "w") as f:
             f.write("\n".join(str(item) for item in users_listed))
         print("Saved")

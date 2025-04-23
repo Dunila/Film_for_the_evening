@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_PATH = "Movie-for-the-evening/data/parsed_data.db"
+DB_PATH = "data/parsed_data.db"
 
 db = sqlite3.connect(DB_PATH)
 c = db.cursor()
