@@ -2,3 +2,6 @@
 *.db
 *.csv
 *.txt
+*.pkl
+*.pt
+*.pth
