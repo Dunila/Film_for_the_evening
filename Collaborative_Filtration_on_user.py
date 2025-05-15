@@ -8,7 +8,6 @@ from IPython.display import clear_output
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 def corr_pearson(vector1, vector2):
     """Returns Pearson's coefficient of correlation of two vectors"""
     v1_mean, v2_mean = vector1.mean(), vector2.mean()
@@ -162,7 +161,7 @@ def recommend(matrix: pd.DataFrame, user, cnt_recomended=25, thrashold_cnt=25, t
 """importing films"""
 films = []
 for i in range(1, 72):
-    with open(f"C:\\Users\\danil\\Desktop\\infa\\data\\lb_films\\parsed_films_checkpoint{i}.json", "r") as f:
+    with open(f"C:\\Users\\danil\\Desktop\\infa\\Film_for_the_evening\\data\\lb_films\\parsed_films_checkpoint{i}.json", "r") as f:
         films1 = json.loads(f.read())
     films.extend(films1)
 #print(len(films))
